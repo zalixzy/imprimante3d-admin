@@ -7,6 +7,7 @@ export async function POST(
     try{
         const {userId} = auth();
         const body = await req.json();
+        const {name} = body;
 
         if(!userId){
             return new NextResponse("Accès non autorisé", {status:401});
@@ -21,8 +22,7 @@ export async function POST(
                 name,
                 userId
             }
-
-        });
+        })
         return NextResponse.json(store);
     }catch (error){
         console.log('[STORE_POST]', error);
