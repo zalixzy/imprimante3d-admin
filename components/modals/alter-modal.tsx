@@ -28,8 +28,8 @@ export const AlertModal: React.FC<AlterModalProps> = ({
 
     return(
         <Modal
-            title="Etes vous sur?"
-            description="Cette action ne peut être réservée"
+            title="Êtes-vous sur?"
+            description="Cette action est irréversible"
             isOpen={isOpen}
             onClose={onClose}
         >
