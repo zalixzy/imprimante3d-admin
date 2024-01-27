@@ -14,11 +14,8 @@ const SetupPage = () => {
   }, [isOpen, onOpen])
 
 
-    return (
-     <div className="p-4">
-      Page racine
-     </div>
-    );
+    return null;
+   
   }
 
   
