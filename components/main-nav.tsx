@@ -22,7 +22,7 @@ export function MainNav({
     {
         href: `/${params.storeId}/billboards`,
         label: "Panneaux d'affichage",
-        active: pathname === `/${params.storeId}/billboard`,
+        active: pathname === `/${params.storeId}/billboards`,
     },
     {
         href: `/${params.storeId}/settings`,

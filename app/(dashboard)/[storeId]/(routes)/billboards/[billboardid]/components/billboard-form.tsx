@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alter-modal";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
 
@@ -50,7 +49,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
     const router = useRouter(); 
     const params = useParams();
-    const origin = useOrigin();
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -71,9 +69,14 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
     const onSubmit = async (data: BillboardFormValues) => {
         try{
             setLoading(true);
-            await axios.patch(`/api/stores/${params.storeId}`, data)
+            if(initialData){
+              await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data)
+            }else{
+              await axios.post(`/api/${params.storeId}/billboards`, data)
+            }
             router.refresh();
-            toast.success("Magasin mis à jours");
+            router.push(`/${params.storeId}/billboards`)
+            toast.success(toastMessage);
         }catch(error){
             toast.error("Une erreur s'est produite")
         }finally{
@@ -84,12 +87,12 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
     const onDelete = async () => {
         try{
             setLoading(true);
-            await axios.delete(`/api/stores/${params.storeId}`)
+            await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
             router.refresh();
             router.push("/");
-            toast.success("Bravo! Magasin supprimé!")
+            toast.success("Bravo! Panneau d'affichage supprimé")
         } catch(erro){
-            toast.error("Supprimez tout les produits et catégories d'abord.")
+            toast.error("Supprimez toutes les catégories de ce panneau d'abord.")
         } finally{
             setLoading(false)
             setOpen(false)
@@ -131,7 +134,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
               name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Background image</FormLabel>
+                  <FormLabel>Image de fond</FormLabel>
                   <FormControl>
                     <ImageUpload 
                       value={field.value ? [field.value] : []} 
@@ -152,7 +155,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                 <FormItem>
                   <FormLabel>Label</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="Billboard label" {...field} />
+                    <Input disabled={loading} placeholder="Label du panneau d'affichage" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
