@@ -31,7 +31,7 @@ export async function GET (
 
 export async function PATCH (
     req: Request,
-    { params }: { params: {storeId: string, colorId: string } }
+    { params }: { params: {colorId: string, storeId: string } }
 ){
     try{
         const { userId } = auth();
@@ -54,7 +54,7 @@ export async function PATCH (
 
         const storeByUserId = await prismadb.store.findFirst({
             where:{
-                id: params.colorId,
+                id: params.storeId,
                 userId
             }
         })

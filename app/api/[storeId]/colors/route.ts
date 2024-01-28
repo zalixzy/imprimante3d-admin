@@ -55,17 +55,17 @@ export async function POST(
 
 export async function GET(
     req: Request,
-    { params }: { params:{colorId: string} }
+    { params }: { params:{storeId: string} }
 ){
     try{
 
-        if(!params.colorId){
-            return new NextResponse("l'id d'une couleur est requise", {status:400});
+        if(!params.storeId){
+            return new NextResponse("l'id d'un magasin est requis", {status:400});
         }
 
         const colors = await prismadb.color.findMany({
            where:{
-            storeId: params.colorId
+            storeId: params.storeId
            }
         })
         return NextResponse.json(colors);
