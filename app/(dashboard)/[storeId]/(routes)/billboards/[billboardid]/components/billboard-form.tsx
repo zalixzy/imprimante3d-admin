@@ -127,50 +127,43 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                 <FormField
-                  control={form.control}
-                  name="imageUrl"
-                  render={({field}) =>(
-                      <FormItem>
-                          <FormLabel>Image d'arrière plan</FormLabel>
-                          <FormControl>
-                            <ImageUpload
-                                value={field.value ? [field.value] : []}
-                                disabled={loading}
-                                onChange={(url) => field.onChange(url)}
-                                onRemove={() => field.onChange("")}
-
-                            />
-
-                          </FormControl>
-                          <FormMessage />
-                      </FormItem>
-                  )}          
-                            
-                />
-                <div className="grid grid-cols-3 gap-8">
-                    <FormField
-                        control={form.control}
-                        name="label"
-                        render={({field}) =>(
-                            <FormItem>
-                                <FormLabel>Label</FormLabel>
-                                <FormControl>
-                                    <Input disabled={loading} placeholder="Label du panneau d'affichage" {...field}/>
-
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                        
+              control={form.control}
+              name="imageUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Background image</FormLabel>
+                  <FormControl>
+                    <ImageUpload 
+                      value={field.value ? [field.value] : []} 
+                      disabled={loading} 
+                      onChange={(url) => field.onChange(url)}
+                      onRemove={() => field.onChange('')}
                     />
-                </div>
-                <Button disabled={loading} className="ml-auto" type="submit">
-                    {action}
-                </Button>
-            </form>
-            
-          </Form>
-          <Separator/>
-        </>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          <div className="md:grid md:grid-cols-3 gap-8">
+            <FormField
+              control={form.control}
+              name="label"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Label</FormLabel>
+                  <FormControl>
+                    <Input disabled={loading} placeholder="Billboard label" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Button disabled={loading} className="ml-auto" type="submit">
+            {action}
+          </Button>
+        </form>
+      </Form>
+    </>
     )
 }

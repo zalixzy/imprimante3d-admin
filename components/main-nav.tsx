@@ -21,7 +21,7 @@ export function MainNav({
     },
     {
         href: `/${params.storeId}/billboards`,
-        label: "Panneau d'affichage",
+        label: "Panneaux d'affichage",
         active: pathname === `/${params.storeId}/billboard`,
     },
     {
