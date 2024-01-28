@@ -47,9 +47,9 @@ export const CellAction: React.FC<CellActionProps> =({
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/sizes/${data.id}`)
             router.refresh();
-            toast.success("Bravo! Panneau d'affichage supprimé")
+            toast.success("Bravo! Taille supprimée")
         } catch(erro){
-            toast.error("Supprimez toutes les catégories de ce panneau d'abord.")
+            toast.error("Supprimez tous les produits liés à cette taille d'abord.")
         } finally{
             setLoading(false)
             setOpen(false)
