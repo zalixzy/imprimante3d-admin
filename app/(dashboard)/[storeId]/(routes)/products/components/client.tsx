@@ -15,10 +15,10 @@ import { ProductColumn, columns } from "./columns";
 
 
 
-interface ProductClientProps{
+interface ProductsClientProps{
     data: ProductColumn[]
 }
-export const ProductClient: React.FC<ProductClientProps> = ({
+export const ProductsClient: React.FC<ProductsClientProps> = ({
     data
 }) => {
     const router = useRouter();

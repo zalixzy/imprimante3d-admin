@@ -33,7 +33,6 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
-import CategoriesPage from "../../../categories/page";
 import { Checkbox } from "@/components/ui/checkbox";
 
 
@@ -82,22 +81,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     const toastMessage = initialData ? "Produit mis à jour" : "Produit crée"
     const action = initialData ? "Sauvegarder les changements" : "Créer"
 
+    const defaultValues = initialData ? {
+      ...initialData,
+      price: parseFloat(String(initialData?.price)),
+    } : {
+      name: '',
+      images: [],
+      price: 0,
+      categoryId: '',
+      colorId: '',
+      sizeId: '',
+      isFeatured: false,
+      isArchived: false,
+    }
+  
     const form = useForm<ProductFormValues>({
-        resolver: zodResolver(formSchema),
-        defaultValues: initialData ? {
-          ...initialData,
-          price: parseFloat(String(initialData?.price)),
-        } : {
-            name: '',
-            images: [],
-            price: 0,
-            categoryId: '',
-            colorId: '',
-            sizeId: '',
-            isFeatured: false,
-            isArchived: false
-
-        }
+      resolver: zodResolver(formSchema),
+      defaultValues
     }); 
 
     const onSubmit = async (data: ProductFormValues) => {
@@ -164,23 +164,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                 <FormField
-              control={form.control}
-              name="images"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Images</FormLabel>
-                  <FormControl>
-                    <ImageUpload 
-                      value={field.value.map((image) => image.url)} 
-                      disabled={loading} 
-                      onChange={(url) => field.onChange([...field.value, { url }])}
-                      onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                  control={form.control}
+                  name="images"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Images</FormLabel>
+                      <FormControl>
+                        <ImageUpload 
+                          value={field.value.map((image) => image.url)} 
+                          disabled={loading} 
+                          onChange={(url) => field.onChange([...field.value, { url }])}
+                          onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
           <div className="md:grid md:grid-cols-3 gap-8">
             <FormField
               control={form.control}
@@ -321,6 +321,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormControl>
                     <Checkbox 
                     checked={field.value}
+                    // @ts-ignore
                     onCheckedChange={field.onChange}
                     />
                   </FormControl>
@@ -343,6 +344,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormControl>
                     <Checkbox 
                     checked={field.value}
+                    // @ts-ignore
                     onCheckedChange={field.onChange}
                     />
                   </FormControl>

@@ -6,7 +6,7 @@ import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
 
 
-import { ProductClient } from "./components/client";
+import { ProductsClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
 
 
@@ -24,7 +24,7 @@ const ProductsPage = async ({
         include:{
             category: true,
             size: true,
-            color: true
+            color: true,
         },
         orderBy:{
             createdAt: 'desc'
@@ -46,7 +46,7 @@ const ProductsPage = async ({
     return(
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <ProductClient data={formattedProducts}/>
+                <ProductsClient data={formattedProducts}/>
             </div>
         </div>
     )
