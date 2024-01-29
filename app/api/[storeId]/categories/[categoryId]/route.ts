@@ -112,7 +112,7 @@ export async function DELETE (
 
         const category = await prismadb.category.deleteMany({
             where: {
-                id: params.categoryId,
+                id: params.storeId,
                
             },
         });
