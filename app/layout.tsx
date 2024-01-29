@@ -11,8 +11,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Admin dashboard",
-  description: "Admin dashboard",
+  title: "Tableau de commandes Admin",
+  description: "Tableau de commandes Admin",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-    <html lang="en">
+    <html lang="fr">
       <body className={inter.className}>
         <ToasterProvider/>
         <ModalProvider/>
