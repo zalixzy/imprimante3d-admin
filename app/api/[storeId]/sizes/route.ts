@@ -55,17 +55,17 @@ export async function POST(
 
 export async function GET(
     req: Request,
-    { params }: { params:{sizeId: string} }
+    { params }: { params:{storeId: string} }
 ){
     try{
 
-        if(!params.sizeId){
-            return new NextResponse("l'id d'une taille est requise", {status:400});
+        if(!params.storeId){
+            return new NextResponse("l'id d'un magasin est requis", {status:400});
         }
 
         const sizes = await prismadb.size.findMany({
            where:{
-            storeId: params.sizeId
+            storeId: params.storeId
            }
         })
         return NextResponse.json(sizes);
