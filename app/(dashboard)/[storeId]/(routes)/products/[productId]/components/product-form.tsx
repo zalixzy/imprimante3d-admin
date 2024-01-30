@@ -330,7 +330,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       Déployé
                     </FormLabel>
                     <FormDescription>
-                      Ce produit apparaitra sur l'accueil
+                      Ce produit apparaitra sur l&apos;accueil
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -353,7 +353,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       Archivé
                     </FormLabel>
                     <FormDescription>
-                      Ce produit n'apparaitra nul part sur le magasin
+                      Ce produit n&apos;apparaitra nul part sur le magasin
                     </FormDescription>
                   </div>
                 </FormItem>

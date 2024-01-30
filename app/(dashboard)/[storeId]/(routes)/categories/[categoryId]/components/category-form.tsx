@@ -152,7 +152,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
               name="billboardId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Panneaux d'affichage</FormLabel>
+                  <FormLabel>Panneaux d&apos;affichage</FormLabel>
                   <Select 
                   disabled={loading} 
                   onValueChange={field.onChange} 
