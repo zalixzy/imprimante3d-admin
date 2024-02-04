@@ -3,10 +3,15 @@ import { BillboardForm } from "./components/billboard-form";
 
 
 const BillboardPage = async ({
-    params
-  }: {
-    params: { billboardId: string }
-  }) => {
+  params
+}: {
+  params: { billboardId: string }
+}) => {
+ 
+  if (!params.billboardId) {
+    
+    return <div>Erreur : ID de billboard manquant</div>;
+  }
     const billboard = await prismadb.billboard.findUnique({
       where: {
         id: params.billboardId
